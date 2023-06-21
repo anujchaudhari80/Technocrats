@@ -1,23 +1,18 @@
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-<androidx.drawerlayout.widget.DrawerLayout
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarTL"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/deep_red"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:gravity="center">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -37,31 +32,35 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-        <FrameLayout
-            android:id="@+id/frameContainerFL"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbarTL" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <LinearLayout
-        android:id="@+id/drawer"
-        android:layout_width="240dp"
-        android:layout_height="match_parent"
-        android:gravity="start"
-        android:orientation="vertical">
-
-        <ListView
-            android:id="@+id/drawer_list"
-            android:layout_width="240dp"
-            android:visibility="gone"
+        <androidx.drawerlayout.widget.DrawerLayout
+            android:id="@+id/drawerLayoutDL"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/deep_red"
-            android:divider="@color/white" />
-    </LinearLayout>
-</androidx.drawerlayout.widget.DrawerLayout>
+            android:layout_below="@id/toolbarTL">
+
+            <FrameLayout
+                android:id="@+id/frameContainerFL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+            <LinearLayout
+                android:id="@+id/drawer"
+                android:layout_width="240dp"
+                android:layout_height="match_parent"
+                android:gravity="start"
+                android:orientation="vertical">
+
+                <ListView
+                    android:id="@+id/drawerList"
+                    android:layout_width="240dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/deep_red"
+                    android:divider="@null"
+                    android:dividerHeight="0.6dp"
+                    android:scrollbars="none" />
+            </LinearLayout>
+        </androidx.drawerlayout.widget.DrawerLayout>
+    </RelativeLayout>
 </layout>

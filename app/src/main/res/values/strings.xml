@@ -15,6 +15,11 @@
     <string name="sign_in">Sign In</string>
     <string name="already_have_an_account_log_in">Already have an account? Log In</string>
     <string name="search">Search</string>
+    <string name="navigation_drawer_open">navigation drawer open</string>
+    <string name="navigation_drawer_close">navigation drawer close</string>
+    <string name="required_blood_type">Required Blood Type</string>
+    <string name="urgency_level">Urgency Level</string>
+    <string name="submit_request">Submit Request</string>
 
     <string-array name="drawerItems">
         <item>Home</item>

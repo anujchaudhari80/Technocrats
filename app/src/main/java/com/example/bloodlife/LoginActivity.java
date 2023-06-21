@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
 
 import com.example.bloodlife.databinding.ActivityLoginBinding;
+import com.google.firebase.FirebaseApp;
 
 
 public class LoginActivity extends BaseActivity {
