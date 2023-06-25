@@ -26,34 +26,39 @@ public class LoginFragment extends BaseFragment {
         View view = binding.getRoot();
         initUI();
         return view;
-
     }
 
     private void initUI() {
         mAuth = FirebaseAuth.getInstance();
         binding.loginBT.setOnClickListener(v -> {
-            String email = binding.emailET.getText().toString().trim();
-            String password = binding.passwordET.getText().toString();
-
-            mAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            // Login successful
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(getActivity(), "Authentication Successful.", Toast.LENGTH_SHORT).show();
-                            navigateToMainActivity(getActivity());
-                            // Proceed with authenticated user
-                        } else {
-                            // Login failed
-                            Toast.makeText(getActivity(), "Authentication failed.", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+            if (!checkForEmptyFields()) {
+                String email = binding.emailET.getText().toString().trim();
+                String password = binding.passwordET.getText().toString();
+                mAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                Toast.makeText(getActivity(), "Authentication Successful.", Toast.LENGTH_SHORT).show();
+                                navigateToMainActivity(getActivity());
+                            } else {
+                                Toast.makeText(getActivity(), "Authentication failed.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
         });
         binding.signupTV.setOnClickListener(v -> {
             replaceFragment(R.id.frameFL, new SignupFragment());
         });
     }
 
-
-
+    private boolean checkForEmptyFields() {
+        if (binding.emailET.getText().toString().trim().isEmpty()) {
+            showToast("Enter cannot be empty");
+        } else if (binding.passwordET.getText().toString().trim().isEmpty()) {
+            showToast("Password cannot be empty");
+        } else {
+            return false;
+        }
+        return true;
+    }
 }
